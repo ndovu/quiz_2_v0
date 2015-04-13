@@ -14,6 +14,23 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem "quiet_assets"
+
+gem 'kaminari'
+
+gem 'devise'
+
+gem "bootstrap-sass"
+
+gem "haml-rails"
+gem "slim-rails"
+
+gem "font-awesome-rails"
+
+# Gem needed to have assets compile properly on
+# Heroku servers
+gem "rails_12factor", group: :production
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -41,5 +58,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem "faker"
+
+  gem "pry-rails"
+
+  gem "interactive_editor"
+  gem "awesome_print"
+  gem "hirb"
 end
 
