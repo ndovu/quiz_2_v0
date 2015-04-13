@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  # root route
+  root "welcome#index"
 
-  devise_for :users
+  # User routes
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  # Idea routes
+  resources :ideas
+
+  get "/welcome/:name" => "welcome#show", as: :welcome
+  get "/welcome/hello" => "welcome#hello", as: :hello_welcome
+
 end

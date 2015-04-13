@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Associations
+  # User has many ideas
+  has_many :ideas, dependent: :destroy
+
   def name_display
     if first_name || last_name
       "#{first_name} #{last_name}".strip.squeeze(" ")
@@ -12,3 +16,4 @@ class User < ActiveRecord::Base
     end
   end
 end
+
