@@ -27,6 +27,7 @@ class IdeasController < ApplicationController
 
   def show
     @comment = Comment.new
+    @join = @idea.join_for(current_user) if user_signed_in?
   end
 
   def update

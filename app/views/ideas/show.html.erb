@@ -22,13 +22,16 @@
     <% end %>
   </ul>
 <% end %>
-<%# doing form_for @answer will submit to answers_path %>
-<%# by default which is not what we want. %>
-<%# That's why we must provide the url option %>
 <%= form_for @comment, url: idea_comments_path(@idea) do |f| %>
-  <%# this is a shortcut for the above: %>
-  <%#= form_for [@question, @answer] do |f| %>
   <%= f.text_area :body, placeholder: "Put your comment here" %>
   <br>
   <%= f.submit "Submit Comment" %> 
 <% end %>
+
+<p>Joined: <%= @idea.joins.count %> times</p>
+<% if @join %>
+  <%= link_to "Joined", idea_join_path(@idea, @join), method: :delete %>
+<% else %>
+  <%= link_to "Join", idea_joins_path(@idea), method: :post %>
+<% end %>
+

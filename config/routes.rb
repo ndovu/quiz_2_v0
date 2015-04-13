@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # Idea routes
   resources :ideas do
     resources :comments
+    resources :joins, only: [:create, :destroy]
   end
+
+  resources :joins, only: [:index]
 
   get "/welcome/:name" => "welcome#show", as: :welcome
   get "/welcome/hello" => "welcome#hello", as: :hello_welcome
