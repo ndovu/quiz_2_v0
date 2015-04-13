@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   # Associations
   # User has many ideas
   has_many :ideas, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def name_display
     if first_name || last_name

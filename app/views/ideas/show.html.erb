@@ -1,2 +1,34 @@
 <h2><%= @idea.title %></h2>
 <p><%= @idea.body %></p>
+
+<h2>Comments</h2>
+<% @idea.comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+    <%= button_to "Delete", idea_comment_path(@idea, comment), method: :delete, data: {confirm: "Are you sure?"} %>
+    <% if comment.user.present? %>
+      <p>Comment by: <%= comment.user.name_display %></p>
+    <% end %>
+  </p>
+  <hr>
+<% end %>
+
+<hr>
+<h2>Submit a comment</h2>
+<% if @comment.errors.any? %>
+  <ul>
+    <% @comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%# doing form_for @answer will submit to answers_path %>
+<%# by default which is not what we want. %>
+<%# That's why we must provide the url option %>
+<%= form_for @comment, url: idea_comments_path(@idea) do |f| %>
+  <%# this is a shortcut for the above: %>
+  <%#= form_for [@question, @answer] do |f| %>
+  <%= f.text_area :body, placeholder: "Put your comment here" %>
+  <br>
+  <%= f.submit "Submit Comment" %> 
+<% end %>
