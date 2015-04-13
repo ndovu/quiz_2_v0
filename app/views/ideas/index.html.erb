@@ -3,11 +3,15 @@
   <h2><%= link_to idea.title, idea_path(idea) %></h2>
   <p><%= idea.body %></p>
   <%= mail_to "#{idea.user.email}", "By: #{idea.user.name_display}"  %>
-  <p><%= @joins %></p>
+  <br>
   <% if idea.join_for(current_user) %>
     <%= link_to "Joined", idea_join_path(idea, idea.join_for(current_user)), method: :delete %>
   <% else %>
     <%= link_to "Join", idea_joins_path(idea), method: :post %>
   <% end %>
   <br>
+  <h4>Joined Members Total: <%= idea.joins.count %></h4>
+  <% idea.joins.each do |joiner| %>
+    <h5><%= joiner.user.name_display %></h5>
+  <% end %>
 <% end %>
