@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
   IDEAS_PER_PAGE = 15
 
@@ -49,6 +50,10 @@ class IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:title, :body)
+  end
+
+  def find_idea
+    @idea = Idea.find(params[:id])
   end
 
 

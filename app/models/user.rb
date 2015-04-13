@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   # User has many ideas
   has_many :ideas, dependent: :destroy
 
-  # def name_display
-  #   if first_name || last_name
-  #     "#{first_name} #{last_name}".strip.squeeze(" ")
-  #   else
-  #     email
-  #   end
-  # end
+  def name_display
+    if first_name || last_name
+      "#{first_name} #{last_name}".strip.squeeze(" ")
+    else
+      email
+    end
+  end
 end
 
