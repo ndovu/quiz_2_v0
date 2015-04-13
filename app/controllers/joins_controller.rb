@@ -17,4 +17,5 @@ before_action :authenticate_user!
     join.destroy
     redirect_to join.idea, notice: "Un-joined"
   end
+  
 end

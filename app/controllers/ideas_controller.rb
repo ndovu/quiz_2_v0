@@ -6,6 +6,7 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.page(params[:page]).per(IDEAS_PER_PAGE)
+    @joins = @ideas.joins(current_user) if user_signed_in?
   end
 
   def new

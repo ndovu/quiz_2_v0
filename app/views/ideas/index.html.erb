@@ -2,7 +2,12 @@
 <% @ideas.each do |idea| %>
   <h2><%= link_to idea.title, idea_path(idea) %></h2>
   <p><%= idea.body %></p>
-  <%= mail_to "#{idea.user.email}", idea.user.name_display  %>
-  <br>
+  <%= mail_to "#{idea.user.email}", "By: #{idea.user.name_display}"  %>
+  <p><%= @joins %></p>
+  <% if idea.join_for(current_user) %>
+    <%= link_to "Joined", idea_join_path(idea, idea.join_for(current_user)), method: :delete %>
+  <% else %>
+    <%= link_to "Join", idea_joins_path(idea), method: :post %>
+  <% end %>
   <br>
 <% end %>
