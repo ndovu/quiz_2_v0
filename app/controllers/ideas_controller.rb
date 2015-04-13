@@ -7,6 +7,7 @@ class IdeasController < ApplicationController
   def index
     @ideas = Idea.page(params[:page]).per(IDEAS_PER_PAGE)
     @joins = @ideas.joins(current_user) if user_signed_in?
+    # @likes = @ideas.likes(current_user) if user_signed_in?
   end
 
   def new
@@ -29,6 +30,7 @@ class IdeasController < ApplicationController
   def show
     @comment = Comment.new
     @join = @idea.join_for(current_user) if user_signed_in?
+    @like = @idea.like_for(current_user) if user_signed_in?
   end
 
   def update
@@ -43,7 +45,7 @@ class IdeasController < ApplicationController
 
   def destroy
     @idea.destroy
-    redirect_to ideass_path, notice: "Question deleted successfully!"
+    redirect_to ideas_path, notice: "Question deleted successfully!"
   end
 
 

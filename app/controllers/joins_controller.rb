@@ -16,6 +16,5 @@ before_action :authenticate_user!
     join = current_user.joins.find params[:id]
     join.destroy
     redirect_to join.idea, notice: "Un-joined"
-  end
-  
+  end 
 end

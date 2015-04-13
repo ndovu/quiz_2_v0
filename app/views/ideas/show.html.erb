@@ -35,3 +35,9 @@
   <%= link_to "Join", idea_joins_path(@idea), method: :post %>
 <% end %>
 
+<p>Liked: <%= @idea.likes.count %> times</p>
+<% if @like %>
+  <%= link_to "Liked", idea_like_path(@idea, @like), method: :delete %>
+<% else %>
+  <%= link_to "Like", idea_likes_path(@idea), method: :post %>
+<% end %>

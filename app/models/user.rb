@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :joins, dependent: :destroy
   has_many :joined_ideas, through: :joins, source: :idea
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_ideas, through: :likes, source: :idea
+
   def name_display
     if first_name || last_name
       "#{first_name} #{last_name}".strip.squeeze(" ")

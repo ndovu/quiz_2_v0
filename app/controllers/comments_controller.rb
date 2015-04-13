@@ -17,8 +17,8 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @idea = Question.find params[:idea_id]
-    @comment = Answer.find params[:id]
+    @idea = Idea.find params[:idea_id]
+    @comment = Comment.find params[:id]
     @comment.destroy
     redirect_to idea_path(@idea), notice: "Comment deleted"
   end
